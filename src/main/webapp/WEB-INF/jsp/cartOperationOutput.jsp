@@ -5,7 +5,7 @@
 <head>
 
     <title>Add To Cart Status</title>
-    <link rel="stylesheet" href='<c:url value="dist/css/menuOutput.css"/>'>
+    <link rel="stylesheet" href='<c:url value="dist/css/shoppingLoginOutput.css"/>'>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,8 +51,10 @@
                                                   <h4 class="section-title mt-0">${message}</h4>
                                         </div>
                                         <div class="pricing-table-cta mb-8">
-                                            <a class="button button-primary button-shadow button-block" href="showCart">Go
-                                                Back</a>
+                                            <a class="button button-primary button-shadow button-block" href="showCart">Cart</a>
+                                        </div>
+                                        <div class="pricing-table-cta mb-8">
+                                            <a class="button button-primary button-shadow button-block" href="orderNow">Order Page</a>
                                         </div>
                                     </div>
                                 </div>

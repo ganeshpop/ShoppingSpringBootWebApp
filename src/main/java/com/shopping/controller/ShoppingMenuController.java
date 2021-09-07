@@ -30,6 +30,7 @@ public class ShoppingMenuController {
     InventoryService inventoryService;
     OrderService orderService;
     UserService userService;
+    boolean cartCheckoutStatus = false;
 
     @Autowired
     public void setCatalogService(CatalogService catalogService) {
@@ -55,6 +56,7 @@ public class ShoppingMenuController {
     public User setUserSession(User user) {
         return user;
     }
+
     @ModelAttribute("cart")
     public Cart setCartSession(Cart cart) {
         return cart;
@@ -84,15 +86,19 @@ public class ShoppingMenuController {
         ModelAndView modelAndView = new ModelAndView("shoppingOrders");
         User user = (User) session.getAttribute("user");
         UserOrderList userOrderList = orderService.getAllOrdersByUserName(user.getName());
-        if(userOrderList != null) {
+        if (userOrderList != null) {
             modelAndView.addObject("orders", userOrderList.getOrders());
         }
-            modelAndView.addObject("user", user);
-            return modelAndView;
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
     @RequestMapping("showCart")
     public ModelAndView showCartController(HttpSession session) {
+        if (cartCheckoutStatus) {
+            session.setAttribute("cart", new Cart());
+            cartCheckoutStatus = false;
+        }
         ModelAndView modelAndView = new ModelAndView("shoppingCart");
         Cart cart = (Cart) session.getAttribute("cart");
         return getModelAndView(cart, modelAndView);
@@ -131,7 +137,7 @@ public class ShoppingMenuController {
         for (OrderItem item : userOrder.getItems()) {
             productList.getProducts().add(catalogService.getProductByCode(item.getProductCode()));
         }
-        modelAndView.addObject("products", productList);
+        modelAndView.addObject("products", productList.getProducts());
         modelAndView.addObject("message", "Order Placed by " + userOrder.getUserName());
 
         return modelAndView;
@@ -139,6 +145,10 @@ public class ShoppingMenuController {
 
     @RequestMapping("addToCart")
     public ModelAndView addProductController(@RequestParam("code") String productCode, HttpSession session) {
+        if (cartCheckoutStatus) {
+            session.setAttribute("cart", new Cart());
+            cartCheckoutStatus = false;
+        }
         int availableQuantity = inventoryService.getInventoryItemByCode(productCode).getAvailableQuantity();
         Cart cart = ((Cart) session.getAttribute("cart"));
         if (cart == null) {
@@ -164,7 +174,7 @@ public class ShoppingMenuController {
     public ModelAndView removeProductController(@RequestParam("code") String productCode, HttpSession session) {
         Cart cart = ((Cart) session.getAttribute("cart"));
         ModelAndView modelAndView = new ModelAndView("shoppingCart");
-        if(cart.getCartItems().get(productCode) == 1){
+        if (cart.getCartItems().get(productCode) == 1) {
             cart.getCartItems().remove(productCode);
         } else cart.getCartItems().put(productCode, (cart.getCartItems().get(productCode) - 1));
         setCartSession(cart);
@@ -189,15 +199,15 @@ public class ShoppingMenuController {
         }
         System.out.println(newOrder);
         if (newOrder != null) {
+            cartCheckoutStatus = true;
             ProductList productList = new ProductList();
             for (OrderItem item : newOrder.getItems()) {
                 productList.getProducts().add(catalogService.getProductByCode(item.getProductCode()));
-                inventoryService.updateInventoryItemQuantityByProductCode(item.getProductCode(),(inventoryService.getInventoryItemByCode(item.getProductCode()).getAvailableQuantity() - item.getQuantity()));
+                inventoryService.updateInventoryItemQuantityByProductCode(item.getProductCode(), (inventoryService.getInventoryItemByCode(item.getProductCode()).getAvailableQuantity() - item.getQuantity()));
             }
-            modelAndView.addObject("products", productList);
+            modelAndView.addObject("products", productList.getProducts());
             modelAndView.addObject("order", newOrder);
             modelAndView.addObject("message", "Thank You " + user.getName().toUpperCase() + " Order Successfully Placed");
-            setCartSession(new Cart());
             return getModelAndView(cart, modelAndView);
         }
         return new ModelAndView("cartOperationOutput", "message", "Failed to Place the Order, Please Try Again.");

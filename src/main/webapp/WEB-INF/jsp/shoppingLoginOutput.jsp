@@ -1,12 +1,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 
     <title>Login Status</title>
-    <link rel="stylesheet" href='<c:url value="dist/css/menuOutput.css"/>'>
+    <link rel="stylesheet" href='<c:url value="dist/css/shoppingLoginOutput.css"/>'>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

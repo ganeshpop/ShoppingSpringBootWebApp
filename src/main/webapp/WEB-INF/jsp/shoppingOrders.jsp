@@ -28,7 +28,9 @@
                                                             data-item='Home'>Home</a></li>
         <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getOrders'
                                                             data-item='Order History'>Order History</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order Now</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order
+            Now</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='showCart' data-item='Cart'>Cart</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='passwordChange'
                                                            data-item='Change Password'>Change Password</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a>

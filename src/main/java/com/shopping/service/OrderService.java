@@ -4,13 +4,12 @@ import com.shopping.bean.UserOrder;
 import com.shopping.bean.UserOrderList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.util.List;
-import java.util.Objects;
 
 @Service
 public class OrderService {
@@ -27,10 +26,11 @@ public class OrderService {
 
 
     public URL saveOder(UserOrder userOrder) {
-        URI uri = restTemplate.postForLocation("http://localhost:8086/orders/", userOrder);
         try {
+            URI uri = restTemplate.postForLocation("http://localhost:8086/orders/", userOrder);
+            assert uri != null;
             return uri.toURL();
-        } catch (MalformedURLException | NullPointerException exception) {
+        } catch (MalformedURLException | HttpClientErrorException exception) {
             return null;
         }
     }

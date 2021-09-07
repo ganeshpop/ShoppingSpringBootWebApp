@@ -63,7 +63,7 @@
                                                     maxlength="200"
                                                     cssStyle="width:50%;"/></span>
                                         </li>
-                                        <spring:errors path="userName" cssClass="error"/>
+                                        <spring:errors path="address" cssClass="error"/>
 
                                         <li>
                                             <span><label

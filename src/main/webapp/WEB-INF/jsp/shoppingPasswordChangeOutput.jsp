@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Metro Management System</title>
+    <title>Password Change</title>
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
     <script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
@@ -22,7 +22,9 @@
                                                             data-item='Home'>Home</a></li>
         <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getOrders'
                                                             data-item='Order History'>Order History</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order Now</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order
+            Now</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='showCart' data-item='Cart'>Cart</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='passwordChange'
                                                            data-item='Change Password'>Change Password</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a>

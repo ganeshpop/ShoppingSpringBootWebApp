@@ -1,6 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -19,19 +18,15 @@
     <ul class="menuItems">
         <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='menu'
                                                             data-item='Home'>Home</a></li>
-        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getTransactions'
-                                                            data-item='Travel History'>Travel History</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='getCard' data-item='Card Details'>Card
-            Details</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='rechargeCard' data-item='Recharge Card'>Recharge
-            Card</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeIn' data-item='Swipe In'>Swipe
-            In</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeOut' data-item='Swipe Out'>Swipe
-            Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getOrders'
+                                                            data-item='Order History'>Order History</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order
+            Now</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='showCart' data-item='Cart'>Cart</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='passwordChange'
                                                            data-item='Change Password'>Change Password</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a>
+        </li>
     </ul>
 </nav>
 

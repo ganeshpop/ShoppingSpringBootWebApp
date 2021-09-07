@@ -9,7 +9,7 @@
     <link rel="stylesheet" href='<c:url value="dist/css/orderDetailsStyle.css"/>'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Metro Management System</title>
+    <title>Order Details</title>
     <link rel="stylesheet" href='<c:url value="vendor/bootstrap/css/bootstrap.min.css"/>'>
     <link rel="stylesheet" href='<c:url value="vendor/animate/animate.css"/>'>
     <link rel="stylesheet" href='<c:url value="vendor/select2/select2.min.css"/>'>
@@ -26,14 +26,15 @@
                                                             data-item='Home'>Home</a></li>
         <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getOrders'
                                                             data-item='Order History'>Order History</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order Now</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order
+            Now</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='showCart' data-item='Cart'>Cart</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='passwordChange'
                                                            data-item='Change Password'>Change Password</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a>
         </li>
     </ul>
 </nav>
-
 
 <div class="is-boxed has-animations">
     <div class="body-wrap,site-header">

@@ -1,6 +1,6 @@
 <%--suppress HtmlUnknownTag --%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sprng" uri="http://www.springframework.org/tags/form" %>
 <html>
@@ -25,6 +25,7 @@
                                                             data-item='Order History'>Order History</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order
             Now</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='showCart' data-item='Cart'>Cart</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='passwordChange'
                                                            data-item='Change Password'>Change Password</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a>
@@ -149,7 +150,8 @@
                                                                 Total Price:
                                                                 <dataTag
                                                                         style="color: white; margin: 0; padding: 0;">
-                                                                    &nbsp; $ ${productFare}</dataTag>
+                                                                    &nbsp; $ <fmt:formatNumber type = "number"
+                                                                                               maxFractionDigits = "2" value = "${productFare}" /></dataTag>
                                                             </li>
                                                         </ul>
                                                     </div>

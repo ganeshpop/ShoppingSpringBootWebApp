@@ -1504,10 +1504,10 @@ button, input, select, textarea, label {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
-    bottom: 18.8%;
+    bottom: -11.8%;
     -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    background-image: url("../images/pricing-illustration.svg")
+    transform: translateX(-45%);
+    background-image: url(../images/pricing-illustration.svg);
 }
 
 .pricing-table-header, .pricing-table-features-title, .pricing-table-features li {
