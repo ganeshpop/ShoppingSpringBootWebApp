@@ -1,11 +1,11 @@
-<%--suppress HtmlUnknownTag --%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Swipe In</title>
-    <link rel="stylesheet" href='<c:url value="dist/css/swipeCardStyle.css"/>'>
+
+    <title>Password Change Status</title>
+    <link rel="stylesheet" href='<c:url value="dist/css/menuOutput.css"/>'>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,25 +20,18 @@
     <ul class="menuItems">
         <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='menu'
                                                             data-item='Home'>Home</a></li>
-        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getTransactions'
-                                                            data-item='Travel History'>Travel History</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='getCard' data-item='Card Details'>Card
-            Details</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='rechargeCard' data-item='Recharge Card'>Recharge
-            Card</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeIn' data-item='Swipe In'>Swipe
-            In</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeOut' data-item='Swipe Out'>Swipe
-            Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getOrders'
+                                                            data-item='Order History'>Order History</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order Now</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='passwordChange'
                                                            data-item='Change Password'>Change Password</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a>
+        </li>
     </ul>
 </nav>
 
 <div class="is-boxed has-animations">
     <div class="body-wrap,site-header">
-
 
         <main>
 
@@ -47,48 +40,20 @@
                 <div class="container-sm">
                     <div class="pricing-inner section-inner">
                         <div class="pricing-header text-center">
-                            <h2 class="section-title mt-0">Select A Station To Swipe In</h2>
-
+                            <h2 class="section-title mt-0">Password Change Status</h2>
                         </div>
                         <div class="pricing-tables-wrap">
                             <div class="pricing-table">
                                 <div class="pricing-table-inner is-revealing">
                                     <div class="pricing-table-main">
                                         <div class="pricing-table-header pb-24">
-                                            <div class="pricing-table-price"><span
-                                                    class="pricing-table-price-currency h2">&#8377;</span><span
-                                                    class="pricing-table-price-amount h1">${card.balance}</span><span
-                                                    class="text-xs">&nbsp;(current balance)</span></div>
-                                        </div>
 
-                                        <label>
-
-                                        </label>
-                                        <div>
-
-
-                                            <ul class="pricing-table-features list-reset text-xs">
-                                                <spring:form action="./cardSwipeIn" method="post">
-                                                <c:forEach items="${stations}" var="station">
-                                                    <li>
-                                                        <label class="rad-label">
-                                                            <input type="radio" class="rad-input" name="swipeInStation"
-                                                                   value="${station.stationId}">
-                                                            <div class="rad-design"></div>
-                                                            <div class="rad-text">
-                                                                [${station.stationId}] ${station.stationName}</div>
-                                                        </label>
-
-                                                    </li>
-                                                </c:forEach>
-                                            </ul>
+                                                  <h4 class="section-title mt-0">${message}</h4>
                                         </div>
                                         <div class="pricing-table-cta mb-8">
-                                            <input class="button button-primary button-shadow button-block"
-                                                   type="submit"
-                                                   value="Swipe In">
+                                            <a class="button button-primary button-shadow button-block" href="menu">Go
+                                                Back</a>
                                         </div>
-                                        </spring:form>
                                     </div>
                                 </div>
                             </div>
@@ -158,10 +123,5 @@
 </div>
 </body>
 </html>
-
-
-
-
-
 
 

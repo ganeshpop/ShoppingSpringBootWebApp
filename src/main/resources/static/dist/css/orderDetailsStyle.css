@@ -45,6 +45,256 @@ nav .menuItems .menuLi .menuA:hover::before {
     transition: all 0.5s ease-in-out;
 }
 
+
+/*//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+
+input {
+    display: block;
+    outline: none;
+    border: none !important;
+}
+
+textarea {
+    display: block;
+    outline: none;
+}
+
+textarea:focus, input:focus {
+    border-color: transparent !important;
+}
+
+/* ------------------------------------ */
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+iframe {
+    border: none !important;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Scroll bar ]*/
+.js-pscroll {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+
+.limiter {
+    margin: 0 auto;
+}
+
+.container-table100 {
+    width: 100%;
+    min-height: 5vh;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 33px 30px;
+}
+
+.wrap-table100 {
+    width: 100%;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+
+table {
+    width: 100%;
+}
+
+th, td {
+    font-weight: unset;
+    text-align: center;
+
+}
+
+.column1 {
+    width:7.5%;
+
+}
+
+.column2 {
+    width: 10%;
+}
+
+.column3 {
+    width: 10%;
+}
+
+.column4 {
+    width: 10%;
+}
+
+.column5 {
+    width: 10%;
+}
+.column6 {
+    width: 9%;
+}
+.column7 {
+    width: 7%;
+}
+.column8 {
+    width: 7%;
+}
+.column9 {
+    width: 7%;
+}
+
+.table100-head th {
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.table100-body td {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+/*==================================================================
+[ Fix header ]*/
+.table100 {
+    position: relative;
+    padding-top: 60px;
+}
+
+.table100::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 200%;
+    max-width: 200%;
+    height: 835px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    bottom: 18.8%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-image: url("../images/pricing-illustration.svg")
+}
+.table100-head {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.table100-body {
+    max-height: 585px;
+    overflow: auto;
+}
+
+
+/*==================================================================
+[ Ver3 ]*/
+
+.table100.ver3 {
+    background-color: #494949;
+}
+
+.table100.ver3 th {
+    font-size: 15px;
+    color: white;
+    line-height: 1.4;
+    text-transform: uppercase;
+    background-color: #1D2026;
+}
+
+.table100.ver3 td {
+    font-size: 15px;
+    color: #a7a7a7;
+    line-height: 1.4;
+    background-color: #2c303b;
+}
+
+
+
+.table100.ver3 {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+}
+
+/*---------------------------------------------*/
+
+
+.navMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: "IBM Plex Sans", monospace;
+}
+nav {
+    background: #1D2026;
+}
+nav .menuItems {
+
+    list-style: none;
+    display: flex;
+}
+nav .menuItems .menuLi {
+    margin: 10px;
+}
+nav .menuItems .menuLi .menuA {
+    text-decoration: none;
+    color: #8f8f8f;
+    font-size: 20px;
+    font-weight: 100;
+    padding-top: 2px;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    text-transform: uppercase;
+}
+nav .menuItems .menuLi .menuA::before {
+    content: attr(data-item);
+    transition: 0.5s;
+    color: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0;
+    overflow: hidden;
+}
+nav .menuItems .menuLi .menuA:hover::before {
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
 html {
     line-height: 1.15;
     -ms-text-size-adjust: 100%;
@@ -320,31 +570,6 @@ img, svg {
     display: block
 }
 
-table {
-    border-collapse: collapse;
-    margin-bottom: 24px;
-    width: 100%
-}
-
-tr {
-    border-bottom: 1px solid #242830
-}
-
-th {
-    text-align: left
-}
-
-th, td {
-    padding: 10px 16px
-}
-
-th:first-child, td:first-child {
-    padding-left: 0
-}
-
-th:last-child, td:last-child {
-    padding-right: 0
-}
 
 html {
     font-size: 20px;
@@ -750,8 +975,16 @@ button, input, select, textarea, label {
     margin-top: 24px
 }
 
+.mr-24 {
+    margin-right: 24px
+}
+
 .mb-24 {
     margin-bottom: 24px
+}
+
+.ml-24 {
+    margin-left: 24px
 }
 
 .m-32 {
@@ -796,6 +1029,22 @@ button, input, select, textarea, label {
 
 .m-48 {
     margin: 48px
+}
+
+.mt-48 {
+    margin-top: 48px
+}
+
+.mr-48 {
+    margin-right: 48px
+}
+
+.mb-48 {
+    margin-bottom: 48px
+}
+
+.ml-48 {
+    margin-left: 48px
 }
 
 .m-56 {
@@ -902,8 +1151,20 @@ button, input, select, textarea, label {
     padding: 24px
 }
 
+.pt-24 {
+    padding-top: 24px
+}
+
+.pr-24 {
+    padding-right: 24px
+}
+
 .pb-24 {
     padding-bottom: 24px
+}
+
+.pl-24 {
+    padding-left: 24px
 }
 
 .p-32 {
@@ -944,6 +1205,26 @@ button, input, select, textarea, label {
 
 .pl-40 {
     padding-left: 40px
+}
+
+.p-48 {
+    padding: 48px
+}
+
+.pt-48 {
+    padding-top: 48px
+}
+
+.pr-48 {
+    padding-right: 48px
+}
+
+.pb-48 {
+    padding-bottom: 48px
+}
+
+.pl-48 {
+    padding-left: 48px
 }
 
 .p-56 {
@@ -1080,6 +1361,9 @@ button, input, select, textarea, label {
 }
 
 @media (min-width: 641px) {
+    .field-grouped {
+        display: flex
+    }
 
     .field-grouped > .control {
         flex-shrink: 0
@@ -1499,6 +1783,11 @@ button, input, select, textarea, label {
     height: 100%
 }
 
+.feature-icon {
+    display: flex;
+    justify-content: center
+}
+
 @media (min-width: 641px) {
     .features-wrap:first-of-type {
         margin-top: -24px
@@ -1550,12 +1839,13 @@ button, input, select, textarea, label {
     height: 835px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 75%;
+    background-size: 95%;
     bottom: 18.8%;
     -webkit-transform: translateX(-50%);
-    transform: translateY(65%);
+    transform: translateY(50%);
     background-image: url("../images/pricing-illustration.svg")
 }
+
 .pricing-table-header, .pricing-table-features-title, .pricing-table-features li {
     border-bottom: 1px solid rgba(138, 148, 167, 0.24)
 }
@@ -1687,6 +1977,7 @@ button, input, select, textarea, label {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-height: 100vh
 }
 
 .boxed-container {
@@ -1707,7 +1998,7 @@ button, input, select, textarea, label {
 @media (min-width: 641px) {
     .section-inner {
         padding-top: 88px;
-        padding-bottom: 5px
+        padding-bottom: 30px
     }
 }
 
@@ -1789,5 +2080,3 @@ button, input, select, textarea, label {
         margin-bottom: 0
     }
 }
-
-

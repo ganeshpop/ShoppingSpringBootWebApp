@@ -1,14 +1,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Recharge</title>
+    <title>Password Change</title>
     <link rel="stylesheet" href='<c:url value="dist/css/menuStyle.css"/>'>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>City Shopping Mart</title>
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
     <script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
@@ -19,21 +19,16 @@
     <ul class="menuItems">
         <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='menu'
                                                             data-item='Home'>Home</a></li>
-        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getTransactions'
-                                                            data-item='Travel History'>Travel History</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='getCard' data-item='Card Details'>Card
-            Details</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='rechargeCard' data-item='Recharge Card'>Recharge
-            Card</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeIn' data-item='Swipe In'>Swipe
-            In</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeOut' data-item='Swipe Out'>Swipe
-            Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getOrders'
+                                                            data-item='Order History'>Order History</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order Now</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='passwordChange'
                                                            data-item='Change Password'>Change Password</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a>
+        </li>
     </ul>
 </nav>
+
 
 <div class="is-boxed has-animations">
     <div class="body-wrap,site-header">
@@ -45,33 +40,44 @@
                 <div class="container-sm">
                     <div class="pricing-inner section-inner">
                         <div class="pricing-header text-center">
-                            <h2 class="section-title mt-0">Recharge Your Card ${card.cardId}</h2>
-                            <%--                            <p class="section-paragraph mb-0" style="color: azure">${message}</p>--%>
+                            <h2 class="section-title mt-0">Lets Change Your Password</h2>
+
                         </div>
                         <div class="pricing-tables-wrap">
                             <div class="pricing-table">
                                 <div class="pricing-table-inner is-revealing">
                                     <div class="pricing-table-main">
                                         <div class="pricing-table-header pb-24">
-                                            <div class="pricing-table-price"><span
-                                                    class="pricing-table-price-currency h2">&#8377;</span><span
-                                                    class="pricing-table-price-amount h1">${card.balance}</span><span
-                                                    class="text-xs">&nbsp;(current balance)</span></div>
-                                        </div>
+                                            </div>
                                         <ul class="pricing-table-features list-reset text-xs">
-                                            <spring:form action="./topUpCard" method="post" modelAttribute="amount">
+                                            <spring:form action="./changePassword" method="post"
+                                                         modelAttribute="password">
                                             <li>
-                                                <span><label
-                                                        style="width: 100px; display: inline-block">Amount :</label> <spring:input
-                                                        path="amount" maxlength="200" cssStyle="width:50%"/></span>
+                                                <label
+                                                        style="width: 250px; display: inline-block">Old Password :</label> <spring:input
+                                                        type="password" path="oldPassword" maxlength="200"
+                                                        cssStyle="width:50%"/>
                                             </li>
-                                            <spring:errors path="amount" cssClass="error"/>
-
+                                            <spring:errors path="oldPassword" cssClass="error"/>
+                                            <li>
+                                               <label
+                                                        style="width: 250px; display: inline-block">New Password :</label> <spring:input
+                                                        type="password" path="newPasswordOne" maxlength="200"
+                                                        cssStyle="width:50%"/>
+                                            </li>
+                                            <spring:errors path="newPasswordOne" cssClass="error"/>
+                                            <li>
+                                                <label
+                                                        style="width: 250px; display: inline-block">Conform New Password :</label> <spring:input
+                                                        type="password" path="newPasswordTwo" maxlength="200"
+                                                        cssStyle="width:50%"/>
+                                            </li>
+                                            <spring:errors path="newPasswordTwo" cssClass="error"/>
                                         </ul>
                                     </div>
                                     <div class="pricing-table-cta mb-8">
                                         <input class="button button-primary button-shadow button-block" type="submit"
-                                               value="Recharge">
+                                               value="Change Password">
                                     </div>
                                     </spring:form>
                                 </div>
@@ -142,4 +148,7 @@
 </div>
 </body>
 </html>
+
+
+
 

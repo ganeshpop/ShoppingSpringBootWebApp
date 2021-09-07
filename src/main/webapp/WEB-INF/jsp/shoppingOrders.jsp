@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Transactions</title>
+    <title>Orders</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href='<c:url value="vendor/bootstrap/css/bootstrap.min.css"/>'>
@@ -21,23 +21,18 @@
 </head>
 <body class="is-boxed has-animations">
 
+
 <nav class="navMenu" style="padding-top: 20px">
     <ul class="menuItems">
         <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='menu'
                                                             data-item='Home'>Home</a></li>
-        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getTransactions'
-                                                            data-item='Travel History'>Travel History</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='getCard' data-item='Card Details'>Card
-            Details</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='rechargeCard' data-item='Recharge Card'>Recharge
-            Card</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeIn' data-item='Swipe In'>Swipe
-            In</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeOut' data-item='Swipe Out'>Swipe
-            Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getOrders'
+                                                            data-item='Order History'>Order History</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order Now</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='passwordChange'
                                                            data-item='Change Password'>Change Password</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a>
+        </li>
     </ul>
 </nav>
 
@@ -45,9 +40,8 @@
     <div class="body-wrap,site-header">
 
         <main>
-            <div class="transactions">
-                <c:if test="${not empty transactions}">
-                <h2 style="text-align: center">Your Transactions </h2>
+                <c:if test="${not empty orders}">
+                <h2 style="text-align: center">Your Orders </h2>
                 <div class="limiter">
                     <div class="container-table100">
                         <div class="wrap-table100">
@@ -56,15 +50,11 @@
                                     <table>
                                         <thead>
                                         <tr class="row100 head">
-                                            <th class="cell100 column1">Card ID</th>
-                                            <th class="cell100 column2">Swipe In Time</th>
-                                            <th class="cell100 column3">Source Station</th>
-                                            <th class="cell100 column4">Destination Station</th>
-                                            <th class="cell100 column5">Swipe Out Time</th>
-                                            <th class="cell100 column6">Travel Fare</th>
-                                            <th class="cell100 column7">Fine</th>
-                                            <th class="cell100 column8">Total Fare</th>
-                                            <th class="cell100 column9">Travel Duration</th>
+                                            <th class="cell100 column1">Order ID</th>
+                                            <th class="cell100 column2">Address</th>
+                                            <th class="cell100 column3">Items Count</th>
+                                            <th class="cell100 column4">Total Fare</th>
+                                            <th class="cell100 column5">Full Details</th>
                                         </tr>
                                         </thead>
                                     </table>
@@ -73,34 +63,25 @@
                                 <div class="table100-body js-pscroll">
                                     <table>
                                         <tbody>
-                                        <c:forEach items="${transactions}" var="transaction">
+                                        <c:forEach items="${orders}" var="order">
                                             <tr class="row100 body">
-                                                <td class="cell100 column1">${transaction.cardId }</td>
-                                                <td class="cell100 column2">${transaction.swipeInTimeStamp.toGMTString()}</td>
-                                                <td class="cell100 column3">
-                                                    [${transaction.sourceStation.stationId}] ${transaction.sourceStation.stationName}</td>
-                                                <td class="cell100 column4">
-                                                    <c:if test="${not empty transaction.destinationStation}">
-                                                    [${transaction.destinationStation.stationId}] ${transaction.destinationStation.stationName}</td>
-                                                </c:if>
-                                                <td class="cell100 column5">${transaction.swipeOutTimeStamp.toGMTString()}</td>
-                                                <td class="cell100 column6">&#8377;${transaction.fare -transaction.fine}/-</td>
-                                                <td class="cell100 column7">&#8377;${transaction.fine}/-</td>
-                                                <td class="cell100 column8">&#8377;${transaction.fare}/-</td>
-                                                <td class="cell100 column9">${transaction.duration} min</td>
+                                                <td class="cell100 column1">${order.id }</td>
+                                                <td class="cell100 column2">${user.address}</td>
+                                                <td class="cell100 column3">${order.itemCount}</td>
+                                                <td class="cell100 column4">$${order.totalFare}</td>
+                                                <td class="cell100 column5"><a href="viewOrder?orderId=${order.id}">Full Details</a></td>
                                             </tr>
                                         </c:forEach>
 
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
 
 
                         </div>
                         </c:if>
-                        <c:if test="${empty transactions}">
-                            <h2 style="text-align: center">No Transactions Found</h2>
+                        <c:if test="${empty orders}">
+                            <h2 style="text-align: center">No orders Found</h2>
                         </c:if>
 
 
@@ -110,7 +91,7 @@
                         <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
                         <script>
                             $('.js-pscroll').each(function () {
-                                var ps = new PerfectScrollbar(this);
+                                let ps = new PerfectScrollbar(this);
                                 $(window).on('resize', function () {
                                     ps.update();
                                 })
@@ -132,10 +113,11 @@
                     </div>
                     <ul class="footer-links list-reset">
                         <li>
-                            <a href = "mailto: ganeshgo1999@gmail.com">Contact</a>
+                            <a href="mailto: ganeshgo1999@gmail.com">Contact</a>
                         </li>
                         <li>
-                            <a href="https://www.linkedin.com/in/s-sai-ganesh-koundinya-gollapudi-25285118a/">About Me</a>
+                            <a href="https://www.linkedin.com/in/s-sai-ganesh-koundinya-gollapudi-25285118a/">About
+                                Me</a>
                         </li>
                         <li>
                             <a href="support">Support</a>

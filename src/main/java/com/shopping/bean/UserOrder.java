@@ -1,9 +1,6 @@
 package com.shopping.bean;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,17 +9,17 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserOrder {
     private long id;
-    private String name;
-    private String customerAddress;
-
+    private String userName;
+    private int itemCount;
+    private double totalFare;
     private List<OrderItem> items;
 
 
-    public UserOrder(String name, String customerAddress, List<OrderItem> items){
-        this.name = name;
-        this.customerAddress = customerAddress;
+    public UserOrder(String name, List<OrderItem> items){
+        this.userName = name;
         this.items = items;
     }
 }

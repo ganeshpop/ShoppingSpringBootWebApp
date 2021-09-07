@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,17 +21,26 @@ public class OrderService {
         this.restTemplate = restTemplate;
     }
 
-    public List<UserOrder> getAllOrdersByUserName(String name) {
-        return Objects.requireNonNull(Objects.requireNonNull(restTemplate.getForObject("http://localhost:8086/orders/name/" + name, UserOrderList.class)).getOrders());
+    public UserOrderList getAllOrdersByUserName(String name) {
+        return restTemplate.getForObject("http://localhost:8086/orders/name/" + name, UserOrderList.class);
     }
 
-    public UserOrder saveOder(UserOrder userOrder) {
-        UserOrder savedOrder = restTemplate.postForObject("http://localhost:8086/orders/", userOrder, UserOrder.class);
-        return savedOrder;
+
+    public URL saveOder(UserOrder userOrder) {
+        URI uri = restTemplate.postForLocation("http://localhost:8086/orders/", userOrder);
+        try {
+            return uri.toURL();
+        } catch (MalformedURLException | NullPointerException exception) {
+            return null;
+        }
     }
 
     public UserOrder getLastOrder(String name) {
         return restTemplate.getForObject("http://localhost:8086/orders/name/last/" + name, UserOrder.class);
+    }
+
+    public UserOrder getOrderById(int id) {
+        return restTemplate.getForObject("http://localhost:8086/orders/" + id, UserOrder.class);
     }
 
 }

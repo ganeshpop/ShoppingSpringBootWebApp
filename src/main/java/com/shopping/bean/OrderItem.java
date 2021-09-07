@@ -26,8 +26,4 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    @Override
-    public String toString(){
-        return "ID : " + this.id + " Product Code :  " + this.productCode + " Quantity : " + this.quantity + " Price : " + this.productPrice;
-    }
 }

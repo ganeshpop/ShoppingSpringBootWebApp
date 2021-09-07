@@ -23,10 +23,10 @@ public class CatalogService {
     }
 
     public Product getProductByCode(String code) {
-        return restTemplate.getForObject("http://localhost:8086/products/code/" + code, Product.class);
+        return restTemplate.getForObject("http://localhost:8084/products/code/" + code, Product.class);
     }
 
     public Product getProductById(int  id) {
-        return restTemplate.getForObject("http://localhost:8086/products/" + id, Product.class);
+        return restTemplate.getForObject("http://localhost:8084/products/" + id, Product.class);
     }
 }

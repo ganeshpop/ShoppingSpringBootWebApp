@@ -15,6 +15,8 @@ import javax.validation.constraints.Size;
 public class SignUp {
     @NotBlank(message = "Name Cannot Be Blank")
     private String userName;
+    @Size(min = 5, message = "Address Should Have Minimum 5 Characters")
+    private String address;
     @Size(min = 5, message = "Password Should Have Minimum 5 Characters")
     private String passwordOne;
     @Size(min = 5, message = "Password Should Have Minimum 5 Characters")

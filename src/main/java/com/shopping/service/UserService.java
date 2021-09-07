@@ -21,7 +21,7 @@ public class UserService {
 
     public void updateUserPasswordById(int id, String password) {
         User user = new User(id, password);
-        restTemplate.put("http://localhost:8090/changePassword/", user, User.class);
+        restTemplate.put("http://localhost:8090/users/changePassword/", user, User.class);
     }
     public User addUser(User user) {
         return restTemplate.postForObject("http://localhost:8090/users/", user, User.class);

@@ -55,6 +55,15 @@
                                                     cssStyle="width:50%;"/></span>
                                         </li>
                                         <spring:errors path="userName" cssClass="error"/>
+                                        <li>
+                                            <span>  <label
+                                                    style="width: 186px; display: inline-block">Address : </label> <spring:input
+                                                    path="address"
+                                                    cssClass="text simpleTextField"
+                                                    maxlength="200"
+                                                    cssStyle="width:50%;"/></span>
+                                        </li>
+                                        <spring:errors path="userName" cssClass="error"/>
 
                                         <li>
                                             <span><label

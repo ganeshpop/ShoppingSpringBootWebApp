@@ -4,7 +4,7 @@
 <html>
 <head>
 
-    <title>Swipe Out Status</title>
+    <title>Add To Cart Status</title>
     <link rel="stylesheet" href='<c:url value="dist/css/menuOutput.css"/>'>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,92 +20,40 @@
     <ul class="menuItems">
         <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='menu'
                                                             data-item='Home'>Home</a></li>
-        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getTransactions'
-                                                            data-item='Travel History'>Travel History</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='getCard' data-item='Card Details'>Card
-            Details</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='rechargeCard' data-item='Recharge Card'>Recharge
-            Card</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeIn' data-item='Swipe In'>Swipe
-            In</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='swipeOut' data-item='Swipe Out'>Swipe
-            Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px "><a class="menuA" href='getOrders'
+                                                            data-item='Order History'>Order History</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='orderNow' data-item='Order Now'>Order Now</a></li>
         <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='passwordChange'
                                                            data-item='Change Password'>Change Password</a></li>
-        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a></li>
+        <li class="menuLi" style="padding-inline: 20px"><a class="menuA" href='logout' data-item='Log Out'>Log Out</a>
+        </li>
     </ul>
 </nav>
 
 <div class="is-boxed has-animations">
     <div class="body-wrap,site-header">
 
-
         <main>
+
 
             <section class="pricing section">
                 <div class="container-sm">
                     <div class="pricing-inner section-inner">
                         <div class="pricing-header text-center">
-                            <h2 class="section-title mt-0">Swipe Out Status</h2>
+                            <h2 class="section-title mt-0">Cart Action Status</h2>
                         </div>
-
                         <div class="pricing-tables-wrap">
                             <div class="pricing-table">
                                 <div class="pricing-table-inner is-revealing">
                                     <div class="pricing-table-main">
-
                                         <div class="pricing-table-header pb-24">
-                                            <h4 class="section-title mt-0" style="text-align: center">${message}</h4>
-                                            <c:if test="${not empty transaction}">
-                                            <h4 class="section-title mt-0" style="text-align: center">Trip Details</h4>
-                                            <div class="pricing-table-price"><span
-                                                    class="pricing-table-price-currency h2">&#8377;</span><span
-                                                    class="pricing-table-price-amount h1">${card.balance}</span><span
-                                                    class="text-xs">&nbsp;(current balance)</span></div>
+
+                                                  <h4 class="section-title mt-0">${message}</h4>
                                         </div>
-                                        <ul class="pricing-table-features list-reset text-xs">
-                                            <li>
-                                                <span>Card ID: <p
-                                                        style="color: white; margin: 0; padding: 0;"> ${transaction.cardId }</p></span>
-                                            </li>
-                                            <li>
-                                                <span>Swipe In Time :<p
-                                                        style="color: white; margin: 0; padding: 0;"> ${transaction.swipeInTimeStamp.toGMTString()}</p> </span>
-                                            </li>
-                                            <li>
-                                                <span>Source Station :<p
-                                                        style="color: white; margin: 0; padding: 0;"> [${transaction.sourceStation.stationId}]&nbsp;${transaction.sourceStation.stationName}</p> </span>
-                                            </li>
-                                            <li>
-                                                <span>Destination Station :<p
-                                                        style="color: white; margin: 0; padding: 0;"> [${transaction.destinationStation.stationId}]&nbsp;${transaction.destinationStation.stationName}</p> </span>
-                                            </li>
-                                            <li>
-                                                <span>Swipe Out Time :<p
-                                                        style="color: white; margin: 0; padding: 0;"> ${transaction.swipeOutTimeStamp.toGMTString()}</p> </span>
-                                            </li>
-                                            <li>
-                                                <span>Travel Fare :<p
-                                                        style="color: white; margin: 0; padding: 0;"> &#8377;${transaction.fare - transaction.fine}/-</p> </span>
-                                            </li>
-                                            <li>
-                                                <span>Fine :<p
-                                                        style="color: white; margin: 0; padding: 0;"> &#8377;${transaction.fine}/-</p> </span>
-                                            </li>
-                                            <li>
-                                                <span>Total Fare :<p
-                                                        style="color: white; margin: 0; padding: 0;"> &#8377;${transaction.fare}/-</p> </span>
-                                            </li>
-                                            <li>
-                                                <span>Travel Duration :<p
-                                                        style="color: white; margin: 0; padding: 0;"> ${transaction.duration} min</p> </span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    </c:if>
-                                    <div class="pricing-table-cta mb-8">
-                                        <a class="button button-primary button-shadow button-block" href="menu">Go
-                                            Home</a>
+                                        <div class="pricing-table-cta mb-8">
+                                            <a class="button button-primary button-shadow button-block" href="showCart">Go
+                                                Back</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -114,6 +62,7 @@
                 </div>
             </section>
         </main>
+
         <footer class="site-footer">
             <div class="container">
                 <div class="site-footer-inner">
@@ -174,4 +123,5 @@
 </div>
 </body>
 </html>
+
 

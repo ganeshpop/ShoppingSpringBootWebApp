@@ -1,24 +1,24 @@
 package com.shopping.bean;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User {
     private int id;
     private String name;
+    private String address;
     private String password;
 
-    public User(String name, String password) {
+    public User(String name, String address, String password) {
         this.name = name;
         this.password = password;
+        this.address = address;
     }
 
     public User(int id, String password) {
