@@ -24,13 +24,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"user", "cart"})
+@SessionAttributes({"user"})
 public class ShoppingMenuController {
     CatalogService catalogService;
     InventoryService inventoryService;
     OrderService orderService;
     UserService userService;
-    boolean cartCheckoutStatus = false;
+    Cart cart;
+
+    @Autowired
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     @Autowired
     public void setCatalogService(CatalogService catalogService) {
@@ -57,10 +62,6 @@ public class ShoppingMenuController {
         return user;
     }
 
-    @ModelAttribute("cart")
-    public Cart setCartSession(Cart cart) {
-        return cart;
-    }
 
 
     @RequestMapping("menu")
@@ -94,13 +95,8 @@ public class ShoppingMenuController {
     }
 
     @RequestMapping("showCart")
-    public ModelAndView showCartController(HttpSession session) {
-        if (cartCheckoutStatus) {
-            session.setAttribute("cart", new Cart());
-            cartCheckoutStatus = false;
-        }
+    public ModelAndView showCartController() {
         ModelAndView modelAndView = new ModelAndView("shoppingCart");
-        Cart cart = (Cart) session.getAttribute("cart");
         return getModelAndView(cart, modelAndView);
     }
 
@@ -144,17 +140,8 @@ public class ShoppingMenuController {
     }
 
     @RequestMapping("addToCart")
-    public ModelAndView addProductController(@RequestParam("code") String productCode, HttpSession session) {
-        if (cartCheckoutStatus) {
-            session.setAttribute("cart", new Cart());
-            cartCheckoutStatus = false;
-        }
+    public ModelAndView addProductController(@RequestParam("code") String productCode) {
         int availableQuantity = inventoryService.getInventoryItemByCode(productCode).getAvailableQuantity();
-        Cart cart = ((Cart) session.getAttribute("cart"));
-        if (cart == null) {
-            cart = new Cart();
-            setCartSession(cart);
-        }
         ModelAndView modelAndView = new ModelAndView("shoppingCart");
         if (cart.getCartItems().containsKey(productCode)) {
             int requestedQuantity = cart.getCartItems().get(productCode);
@@ -166,25 +153,21 @@ public class ShoppingMenuController {
             if (availableQuantity > 0) cart.getCartItems().put(productCode, 1);
             else return new ModelAndView("cartOperationOutput", "message", "Product You Requested Is Out Of Stock");
         }
-        setCartSession(cart);
         return getModelAndView(cart, modelAndView);
     }
 
     @RequestMapping("removeFromCart")
-    public ModelAndView removeProductController(@RequestParam("code") String productCode, HttpSession session) {
-        Cart cart = ((Cart) session.getAttribute("cart"));
+    public ModelAndView removeProductController(@RequestParam("code") String productCode) {
         ModelAndView modelAndView = new ModelAndView("shoppingCart");
         if (cart.getCartItems().get(productCode) == 1) {
             cart.getCartItems().remove(productCode);
         } else cart.getCartItems().put(productCode, (cart.getCartItems().get(productCode) - 1));
-        setCartSession(cart);
         return getModelAndView(cart, modelAndView);
     }
 
     @RequestMapping("checkOut")
     public ModelAndView checkOutController(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("shoppingOrderDetails");
-        Cart cart = ((Cart) session.getAttribute("cart"));
         User user = ((User) session.getAttribute("user"));
         List<OrderItem> orderItems = new ArrayList<>();
         for (String productCode : cart.getCartItems().keySet()) {
@@ -199,7 +182,7 @@ public class ShoppingMenuController {
         }
         System.out.println(newOrder);
         if (newOrder != null) {
-            cartCheckoutStatus = true;
+            this.cart = new Cart();
             ProductList productList = new ProductList();
             for (OrderItem item : newOrder.getItems()) {
                 productList.getProducts().add(catalogService.getProductByCode(item.getProductCode()));
@@ -208,7 +191,7 @@ public class ShoppingMenuController {
             modelAndView.addObject("products", productList.getProducts());
             modelAndView.addObject("order", newOrder);
             modelAndView.addObject("message", "Thank You " + user.getName().toUpperCase() + " Order Successfully Placed");
-            return getModelAndView(cart, modelAndView);
+            return modelAndView;
         }
         return new ModelAndView("cartOperationOutput", "message", "Failed to Place the Order, Please Try Again.");
     }
@@ -228,6 +211,7 @@ public class ShoppingMenuController {
         }
         modelAndView.addObject("inventories", inventoryItemList);
         modelAndView.addObject("products", selectedProductsList);
+        modelAndView.addObject("cart", cart);
         modelAndView.addObject("cartFare", new BigDecimal(cartFare).setScale(2, RoundingMode.HALF_UP).doubleValue());
         modelAndView.addObject("itemsInCart", itemsInCart);
         return modelAndView;

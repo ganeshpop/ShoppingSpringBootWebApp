@@ -1,6 +1,5 @@
 package com.shopping.controller;
 
-import com.shopping.bean.Cart;
 import com.shopping.bean.Login;
 import com.shopping.bean.SignUp;
 import com.shopping.bean.User;
@@ -19,7 +18,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@SessionAttributes({"user","cart"})
+@SessionAttributes({"user"})
 public class ShoppingSessionController {
     UserService userService;
     OrderService orderService;
@@ -38,13 +37,6 @@ public class ShoppingSessionController {
     public User setUserSession(User user) {
         return user;
     }
-
-    @ModelAttribute("cart")
-    public Cart setCartSession(Cart cart) {
-        return cart;
-    }
-
-
 
     @RequestMapping("login")
     public ModelAndView loginController() {
@@ -77,7 +69,6 @@ public class ShoppingSessionController {
                 modelAndView.addObject("lastOrder", orderService.getLastOrder(user.getName()));
                 modelAndView.setViewName("shoppingMenu");
                 setUserSession(userService.getUserByName(user.getName()));
-                setCartSession(new Cart());
                 return modelAndView;
             } else return new ModelAndView("shoppingLoginOutput", "message", "Invalid Password, Try Again");
         } else return new ModelAndView("shoppingLoginOutput", "message", "Invalid  Username");
@@ -100,7 +91,6 @@ public class ShoppingSessionController {
                     modelAndView.addObject("message", "Congratulations, " + signUp.getUserName() + " Your Account is Created. Lets Do Some Shopping!");
                     modelAndView.addObject("user", newUser);
                     setUserSession(userService.getUserByName(newUser.getName()));
-                    setCartSession(new Cart());
                     modelAndView.setViewName("shoppingMenu");
                     return modelAndView;
                 } else return new ModelAndView("createUserOutput", "message", "SignUp Failed");

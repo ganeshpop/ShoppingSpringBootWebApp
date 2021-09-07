@@ -1,5 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -58,7 +58,8 @@
 <%--                                        <h4 class="section-title mt-0" style="text-align: center">Order Details</h4>--%>
                                         <div class="pricing-table-price"><span
                                                 class="pricing-table-price-currency h2">$</span><span
-                                                class="pricing-table-price-amount h1">${order.totalFare}</span><span
+                                                class="pricing-table-price-amount h1"><fmt:formatNumber type = "number"
+                                                                                                        maxFractionDigits = "2" value = "${order.totalFare}" /></span><span
                                                 class="text-xs">&nbsp;(total fare)</span></div>
                                     </div>
                                     <ul class="pricing-table-features list-reset text-xs">
